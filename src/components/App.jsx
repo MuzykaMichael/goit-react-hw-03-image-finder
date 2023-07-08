@@ -36,10 +36,10 @@ export class App extends Component{
       const {
         hits,
         totalHits,
-        page: currentPage,
+        page:currentPage,
       } = await fetchFromApi(query,page);
       if (hits.length === 0){
-        this.setState({isEmpty:true})
+        this.setState({isEmpty:true,page:currentPage})
       }
       
       this.setState((prevState)=>({
