@@ -80,6 +80,7 @@ export class App extends Component{
         <Searchbar onSubmit={this.onHandleSubmit}/>
         {isEmpty && <p>Sorry. There are no images</p>}
         {error && <p>Something went wrong - {error}</p>}
+        {isLoading && <Loader/>}
         <ImageGallery
         images={images}
         totalHits={totalHits}
