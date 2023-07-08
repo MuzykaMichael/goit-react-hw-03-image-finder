@@ -9,6 +9,7 @@ const apiOptions = {
 
 export const fetchFromApi = async (searchQuery,page) => {
     const response = await axios.get(`${apiOptions.defaultURL}q=${searchQuery}&page=${page}&key=${apiOptions.key}&image_type=photo&orientation=horizontal&per_page=${apiOptions.perPage}`)
+    console.log(response.data)
     return response.data;
     
 }
