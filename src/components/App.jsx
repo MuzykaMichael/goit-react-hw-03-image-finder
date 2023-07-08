@@ -38,7 +38,7 @@ export class App extends Component{
         totalHits,
         page:currentPage,
       } = await fetchFromApi(query,page);
-      if (this.state.totalHits === 0){
+      if (totalHits === 0){
         this.setState({isEmpty:true,page:currentPage})
       }
       
