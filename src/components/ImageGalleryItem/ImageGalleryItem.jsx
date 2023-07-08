@@ -9,9 +9,9 @@ export class ImageGalleryItem extends Component{
     };
 
     render(){
-        const {alt,src,largeImg,id} = this.props;
+        const {alt,src,largeImg} = this.props;
         return(
-            <GalleryItem key={id}>
+            <GalleryItem>
                 <ModalButton onClick={()=>this.clickHandler(largeImg,alt)} type='button'>
                     <GalleryItemImage src={src} alt={alt}/>
                 </ModalButton>
@@ -27,5 +27,5 @@ ImageGalleryItem.propTypes = {
     src:propTypes.string.isRequired,
     largeImg:propTypes.string.isRequired,
     setModalImage:propTypes.func.isRequired,
-    id:propTypes.number.isRequired,
+
 }

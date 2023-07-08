@@ -36,16 +36,17 @@ export class App extends Component{
       const {
         hits,
         totalHits,
-        per_page,
         page: currentPage,
       } = await fetchFromApi(query,page);
       if (hits.length === 0){
         this.setState({isEmpty:true})
       }
+      
       this.setState((prevState)=>({
         images: [...prevState.images,...hits],
-        isVisible: currentPage < Math.ceil(totalHits/per_page),
+        isVisible: page < (totalHits/12),
         isEmpty:false,
+        totalHits,
       }));
     } catch(error){
       this.setState({error:error.message})
@@ -74,7 +75,7 @@ export class App extends Component{
 
   render(){
     const {images,isVisible,isLoading,isEmpty,error,modalImg,totalHits,query} = this.state;
-
+    console.log(isVisible)
     return (
       <>
         <Searchbar onSubmit={this.onHandleSubmit}/>
@@ -82,6 +83,8 @@ export class App extends Component{
         {error && <p>Something went wrong - {error}</p>}
         {isLoading && <Loader/>}
         <ImageGallery
+        isLoading={isLoading}
+        isEmpty={isEmpty}
         images={images}
         totalHits={totalHits}
         query={query}
