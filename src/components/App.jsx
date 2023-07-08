@@ -75,7 +75,6 @@ export class App extends Component{
 
   render(){
     const {images,isVisible,isLoading,isEmpty,error,modalImg,totalHits,query} = this.state;
-    console.log(isVisible)
     return (
       <>
         <Searchbar onSubmit={this.onHandleSubmit}/>
