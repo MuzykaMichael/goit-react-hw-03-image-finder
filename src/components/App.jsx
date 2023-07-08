@@ -38,7 +38,7 @@ export class App extends Component{
         totalHits,
         page:currentPage,
       } = await fetchFromApi(query,page);
-      if (hits.length === 0){
+      if (this.state.totalHits === 0){
         this.setState({isEmpty:true,page:currentPage})
       }
       
@@ -78,7 +78,7 @@ export class App extends Component{
     return (
       <>
         <Searchbar onSubmit={this.onHandleSubmit}/>
-        {isEmpty && <p>Sorry. There are no images</p>}
+        {isEmpty && console.log("No images matching your query!")}
         {error && <p>Something went wrong - {error}</p>}
         {isLoading && <Loader/>}
         <ImageGallery
