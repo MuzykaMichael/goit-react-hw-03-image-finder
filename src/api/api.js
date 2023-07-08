@@ -13,6 +13,4 @@ export const fetchFromApi = async (searchQuery,page) => {
     
 }
 
-export default {
-    fetchFromApi,
-}
+export default fetchFromApi;
