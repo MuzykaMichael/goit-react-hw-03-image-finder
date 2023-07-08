@@ -32,7 +32,7 @@ export class Searchbar extends Component{
     render(){
         const {query} = this.state;
         return(
-            <Form onSubmit={this.onSubmit}>
+            <Form onSubmit={this.handleSubmit}>
                 <Button type='submit'>
                     <SpanLabel>Search</SpanLabel>
                 </Button>

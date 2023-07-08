@@ -45,7 +45,7 @@ export class App extends Component{
       this.setState((prevState)=>({
         images: [...prevState.images,...hits],
         isVisible: currentPage < Math.ceil(totalHits/per_page),
-
+        isEmpty:false,
       }));
     } catch(error){
       this.setState({error:error.message})
@@ -73,7 +73,7 @@ export class App extends Component{
   }
 
   render(){
-    const {images,isVisible,isLoading,isEmpty,error,modalImg,totalHits} = this.state;
+    const {images,isVisible,isLoading,isEmpty,error,modalImg,totalHits,query} = this.state;
 
     return (
       <>
@@ -84,10 +84,10 @@ export class App extends Component{
         <ImageGallery
         images={images}
         totalHits={totalHits}
-        query={this.state.query}
+        query={query}
         loadMore={this.onLoadMore}
         setModalImage={this.modalImgSet}
-        />
+        ></ImageGallery>
         {isVisible && <Button onClick={this.onLoadMore}>{isLoading? 'Loading...':'Load More'}</Button>}
         {modalImg && <Modal img={modalImg} onClose={this.modalImgReset}/>}
       </>
