@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import { ImageList,ErrorMsg } from './ImageGallery.styled'
-import {Loader} from '../Loader/Loader'
+import { ImageList } from './ImageGallery.styled'
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem'
 import propTypes from 'prop-types'
 
@@ -8,8 +7,7 @@ export class ImageGallery extends Component{
 
     
     render(){
-        const {images,query,setModalImage,isLoading,isEmpty} = this.props;
-        if(isLoading===false || isEmpty === false){
+        const {images,setModalImage} = this.props;
             return(
                 <>
                     <ImageList>
@@ -23,25 +21,12 @@ export class ImageGallery extends Component{
                             />
                         ))}
                     </ImageList>
-                    {isLoading === true&& <Loader/>}
                 </>
             );
-        }
-        if (isLoading===false && isEmpty===true){
-            return(
-                <>
-                    <ErrorMsg>
-                        We can't find pictures matching '{query}'.
-                    </ErrorMsg>
-                </>
-            )
-        }
     }
 }
 
 ImageGallery.propTypes = {
     images:propTypes.arrayOf(propTypes.object.isRequired).isRequired,
-    totalHits: propTypes.number.isRequired,
-    query:propTypes.string.isRequired,
     setModalImage:propTypes.func.isRequired,
 }

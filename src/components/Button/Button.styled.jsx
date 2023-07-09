@@ -6,6 +6,7 @@ background-color:white;
 width:200px;
 text-align: center;
 display: inline-block;
+background-color:orange;
 `;
 export const LoadMoreButtonSpan = styled.span`
 color:black;

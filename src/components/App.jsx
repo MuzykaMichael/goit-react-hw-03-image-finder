@@ -16,7 +16,6 @@ export class App extends Component{
     isVisible: false,
     error: null,
     modalImg:'',
-    totalHits:0,
   }
 
   componentDidUpdate = (_,prevState) => {
@@ -36,17 +35,15 @@ export class App extends Component{
       const {
         hits,
         totalHits,
-        page:currentPage,
       } = await fetchFromApi(query,page);
       if (totalHits === 0){
-        this.setState({isEmpty:true,page:currentPage})
+        this.setState({isEmpty:true,})
       }
       
       this.setState((prevState)=>({
         images: [...prevState.images,...hits],
         isVisible: page < (totalHits/12),
         isEmpty:false,
-        totalHits,
       }));
     } catch(error){
       this.setState({error:error.message})
@@ -74,7 +71,7 @@ export class App extends Component{
   }
 
   render(){
-    const {images,isVisible,isLoading,isEmpty,error,modalImg,totalHits,query} = this.state;
+    const {images,isVisible,isLoading,isEmpty,error,modalImg,} = this.state;
     return (
       <>
         <Searchbar onSubmit={this.onHandleSubmit}/>
@@ -82,12 +79,7 @@ export class App extends Component{
         {error && <p>Something went wrong - {error}</p>}
         {isLoading && <Loader/>}
         <ImageGallery
-        isLoading={isLoading}
-        isEmpty={isEmpty}
         images={images}
-        totalHits={totalHits}
-        query={query}
-        loadMore={this.onLoadMore}
         setModalImage={this.modalImgSet}
         ></ImageGallery>
         {isVisible && <Button onClick={this.onLoadMore}>{isLoading? 'Loading...':'Load More'}</Button>}
